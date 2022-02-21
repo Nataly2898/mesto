@@ -1,0 +1,22 @@
+.elements__title {
+  max-width: 200px;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+  padding: 26px 0 26px 21px;
+  margin: 0;
+  color: #000000;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+@media screen and (max-width: 767px) {
+  .elements__title {
+    padding-top: 22px;
+  }
+}

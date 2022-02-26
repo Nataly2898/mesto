@@ -13,10 +13,10 @@
   }
 }
 
+
 @media screen and (max-width: 767px) {  
   .elements {
     grid-template-columns: repeat(1, 282px);
     gap: 22px;
-    margin: auto 19px;
     }
 }

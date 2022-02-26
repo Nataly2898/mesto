@@ -7,9 +7,10 @@
     padding: 0;
     margin: 31px 20px auto auto;
     background-repeat: no-repeat;
+    transition: opacity .3 ease-in-out;
   }
   
-  .elements__like:hover {
-    opacity: .6;
-    cursor: pointer;
-  }
+.elements__like:hover {
+  opacity: .6;
+  cursor: pointer;
+}

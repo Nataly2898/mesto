@@ -4,6 +4,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    background-color: white;
+    background-color: #fff;
     border-radius: 0 0 10px 10px;
-    }
+}

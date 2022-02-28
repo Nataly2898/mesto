@@ -7,6 +7,10 @@ const popupName = popup.querySelector('.popup__name');
 const popupDescription = popup.querySelector('.popup__description');
 const popupCloseButton = popup.querySelector('.popup__close-button');
 
+
+profileEditButton.addEventListener('click', () => popupOpened(popup)); 
+
+
 /* Открытие поп апа */
 function popupOpened(popup) {
   popup.classList.add('popup_opened');
@@ -32,11 +36,3 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 
 
-profileEditButton.addEventListener('click', () => popupOpened(popup)); 
-//В момент клика по profileEditButton, вызываем колбэк функцию popupOpened() 
-//в которой передаём аргумент с переменной, на которой нужно навесить класс открытия, это переменная сейчас const popup.
-//Это стрелочная функция кстати. Вы должны были уже её пройти по идеи.
-
-popupCloseButton.addEventListener('click', () => popupClose(popup)); 
-//В момент клика по popupCloseButtone, вызываем колбэк функцию popupClose() 
-//в которой передаём аргумент с переменной, на которой нужно удалить класс открытия, это переменная сейчас const popup.

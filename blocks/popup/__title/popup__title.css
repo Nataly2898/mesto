@@ -3,13 +3,16 @@
   font-style: normal;
   font-weight: 900;
   line-height: 29px;
-  margin: 34px 64px 0 36px;   
+  margin: 0;
+  padding: 0;
+  padding-bottom: 54px;
+  align-self: start;
 }
 
 @media screen and (max-width: 767px) {
   .popup__title {
     font-size: 18px;
     line-height: 22px;
-    margin: 25px auto 40px;   
+    padding-bottom: 75px;
   }
 }

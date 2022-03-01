@@ -85,15 +85,11 @@
 
     <div class="popup">
       <div class="popup__container">
-        <form class="popup__form" name="profilform">
           <h3 class="popup__title">Редактировать профиль</h3>
-          <div class="popup__field">
-            <input class="popup__input popup__name" type="text" name="username" value="Жак-Ив Кусто">
-          </div>
-          <div class="popup__field">
-            <input class="popup__input popup__description" type="text" name="description" value="Исследователь океана">
-          </div>
-          <button class="popup__save-button" type="submit">Сохранить</button>
+          <form class="form" name="profilform">
+            <input class="form__input form__input_type_name" type="text" name="username" value="Жак-Ив Кусто">
+            <input class="form__input form__input_type_description" type="text" name="description" value="Исследователь океана">
+            <button class="form__save-button" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>

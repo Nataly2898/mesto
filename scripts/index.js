@@ -22,7 +22,7 @@ function popupCloseButton() {
 // Обработчик «отправки» формы
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  // Получение значение полей jobInput и nameInput из свойства value
+ // Получение значение полей jobInput и nameInput из свойства value
   profileTitle.textContent = formProfileName.value;
   profileDescription.textContent = formProfileDescription.value;
   popupCloseButton(); //В функцию popupClose() передаём аргумент popup переменной элемента, с которой нужно удалить класс.
@@ -33,7 +33,6 @@ formElement.addEventListener('submit', formSubmitHandler);
 profileEdit.addEventListener('click', profileEditButton); 
 //В момент клика по profileEditButton, вызываем колбэк функцию popupOpened() 
 //в которой передаём аргумент с переменной, на которой нужно навесить класс открытия, это переменная сейчас const popup.
-
 
 popupClose.addEventListener('click', popupCloseButton); 
 //В момент клика по popupCloseButtone, вызываем колбэк функцию popupClose() 

@@ -29,52 +29,8 @@
         <button class="profile__add-button" type="button" aria-label="Загрузить фото"></button>
       </section>
 
-      <section class="photogallery">
-        <ul class="elements">
-          <li class="elements__list">
-            <img class="elements__image" src="images/karachaevsk.jpg" alt="Старавая церковь в Карачаевске">
-            <div class="elements__description">
-              <h3 class="elements__title">Карачаевск</h3>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__list">
-            <img class="elements__image" src="images/elbrus.jpg" alt="Гора Эльбрус на закате">
-            <div class="elements__description">
-              <h3 class="elements__title">Гора Эльбрус</h3>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__list">
-            <img class="elements__image" src="images/dombay.jpg" alt="Снежный Домбай">
-            <div class="elements__description">
-              <h3 class="elements__title">Домбай</h3>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__list">
-            <img class="elements__image" src="images/altay.jpg" alt="Улаганский перевал, озеро и горы">
-            <div class="elements__description">
-              <h3 class="elements__title">Алтай</h3>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__list">
-            <img class="elements__image" src="images/baykal.jpg" alt="Озеро Байкал и вдали заснеженные горы">
-            <div class="elements__description">
-              <h3 class="elements__title">Озеро Байкал</h3>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-          <li class="elements__list">
-            <img class="elements__image" src="images/karachaevo-chercessiya.jpg"
-              alt="Горные хребты и реки в Карачаево-Черкессии">
-            <div class="elements__description">
-              <h3 class="elements__title">Карачаево-Черкесия</h3>
-              <button class="elements__like" type="button"></button>
-            </div>
-          </li>
-        </ul>
+      <section class="elements block-centering">
+        <ul class="elements__list"></ul>
       </section>
 
     </main>
@@ -83,7 +39,7 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <section class="popup">
+    <section class="popup popup_form_edit-profile">
       <div class="popup__container">
           <h3 class="popup__title">Редактировать профиль</h3>
           <form class="form" name="profilform">
@@ -94,6 +50,29 @@
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
     </section>
+
+    <section class="popup popup_form_add-card">
+      <div class="popup__container">
+          <h3 class="popup__title">Новое место</h3>
+          <form class="form" name="profilform">
+            <input class="form__input form__input_type_name" type="text" name="username" value="Название">
+            <input class="form__input form__input_type_description" type="text" name="description" value="Ссылка на картинку">
+            <button class="form__save-button" type="submit">Создать</button>
+        </form>
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      </div>
+    </section>
+
+    <template id="card-template">
+      <li class="element">
+        <img src="" alt="" class="element__image">
+        <div class="element__container">
+          <h2 class="element__title"></h2>
+          <button type="button" class="element__like-button"></button>
+        </div>
+        <button type="button" class="element__button-trash"></button>
+      </li>
+    </template>
 
   </div>
   <script src="./scripts/index.js"></script>

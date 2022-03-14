@@ -6,17 +6,17 @@ const profileDescription = document.querySelector('.profile__description');
 const formElement = document.querySelector('.form');
 const formProfileName = popup.querySelector('.form__input_type_name');
 const formProfileDescription = popup.querySelector('.form__input_type_description');
-const formCloseButton = popup.querySelector('.form__close-button');
+const popupCloseButton = popup.querySelector('.popup__close-button');
 
 const addCardButton = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_form_add-card');
 const popupAddCardName = popupAddCard.querySelector('.form__input_type_name');
 const popupAddCardLink = popupAddCard.querySelector('.form__input_type_link');
-const popupAddCardClose = popupAddCard.querySelector('.form__close-button');
+const popupAddCardClose = popupAddCard.querySelector('.popup__close-button');
 const addCardForm = popupAddCard.querySelector('.form');
 
 const popupView = document.querySelector('.popup_view-image');
-const popupViewClose = popupView.querySelector('.form__close-button');
+const popupViewClose = popupView.querySelector('.popup__close-button');
 const popupViewImage = popupView.querySelector('.popup__image');
 const popupViewDesc = popupView.querySelector('.popup__description');
 
@@ -117,7 +117,7 @@ addCardButton.addEventListener('click', function() {
 })
 
 /* Закрытие поп апа по крестику */
-formCloseButton.addEventListener('click', () => popupClose(popupProfile)); 
+popupCloseButton.addEventListener('click', () => popupClose(popupProfile)); 
 popupAddCardClose.addEventListener('click', () => popupClose(popupAddCard));
 popupViewClose.addEventListener('click', () => popupClose(popupView));
 

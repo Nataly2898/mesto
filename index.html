@@ -28,7 +28,7 @@
         </div>
         <button class="profile__add-button" type="button" aria-label="Загрузить фото"></button>
       </section>
-
+      
       <section class="elements">
         <ul class="elements__list"></ul>
       </section>
@@ -68,23 +68,23 @@
     </section>
     
     <section class="popup popup_view-image">
-      <figure class="popup__content">
-        <img src="" alt="" class="popup__image">
-        <figcaption class="popup__description"></figcaption>
+      <div class="popup__content">
+        <img src="#" alt="Загруженное изображение" class="popup__image">
+        <h3 class="popup__description"></h3>
         <button type="button" class="form__close-button">
           <img src="./images/close-icon.svg" alt="Закрыть" class="form__close-image">
         </button>
-      </figure>
+      </div>
     </section>
 
     <template id="card-template">
       <li class="element">
-        <img src="" alt="" class="element__image">
+        <img src="#" alt="Загруженное изображение" class="element__image">
         <div class="element__container">
           <h2 class="element__title"></h2>
           <button class="element__like" type="button"></button>
         </div>
-        <button class="element__button-trash" type="button"></button>
+        <button class="element__button-trash" type="button" aria-label="Удаление карточки"></button>
       </li>
     </template>
 

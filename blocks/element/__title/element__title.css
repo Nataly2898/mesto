@@ -5,18 +5,9 @@
   font-weight: 900;
   line-height: 29px;
   letter-spacing: 0em;
-  text-align: left;
-  padding: 26px 0 26px 21px;
-  margin: 0;
   color: #000000;
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-
-@media screen and (max-width: 767px) {
-  .element__title {
-    padding-top: 22px;
-  }
 }

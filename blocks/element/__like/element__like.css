@@ -1,14 +1,12 @@
 .element__like {
-    background-image: url('../../../images/vector.svg');
-    width: 22px;
-    height: 19px;
-    border: none;
-    background-color: #ffffff;
-    padding: 0;
-    margin: 31px 20px auto auto;
-    background-repeat: no-repeat;
-    transition: opacity .3 ease-in-out;
-  }
+   width: 22px;
+   height: 19px;
+   background: transparent url('../../../images/vector.svg') 0 0 no-repeat;
+   background-size: cover;
+   border: none;
+   line-height: 0;
+   cursor: pointer;
+}
   
 .element__like:hover {
   opacity: .5;

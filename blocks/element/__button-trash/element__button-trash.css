@@ -1,17 +1,17 @@
 .element__button-trash {
-   position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 18px;
-    height: 19px;
-    background: none;
-    border: none;
-    outline: none;
-    background: url('../../../images/button-trash.svg') 0 0 no-repeat;
-    background-size: cover;
-    cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 18px;
+  height: 19px;
+  background: none;
+  border: none;
+  outline: none;
+  background: url('../../../images/button-trash.svg') 0 0 no-repeat;
+  background-size: cover;
+  cursor: pointer;
 }
   
-.element__btn-trash:hover {
-    opacity: .6;
-  }
+.element__button-trash:hover {
+  opacity: .6;
+}

@@ -59,11 +59,6 @@ function addCard(cardImage, cardName) {
   newCardImg.alt = cardName;
   newCard.querySelector('.element__title').textContent = cardName;
 
-
-  newCard.querySelector('.element__image').src = cardImage;
-  newCard.querySelector('.element__image').alt = cardName;
-  newCard.querySelector('.element__title').textContent = cardName;
-
   /* Лайк карточки */
   newCard.querySelector('.element__like').addEventListener('click', function(event) {
     event.target.classList.toggle('element__like_active');

@@ -54,7 +54,7 @@ function addCard(cardImage, cardName) {
   const cardTemplate = document.querySelector('#card-template').content;
   const newCard = cardTemplate.querySelector('.element').cloneNode(true);
 
-  var newCardImg = newCard.querySelector('.element__image');
+  const newCardImg = newCard.querySelector('.element__image');
   newCardImg.src = cardImage;
   newCardImg.alt = cardName;
   newCard.querySelector('.element__title').textContent = cardName;
@@ -81,7 +81,7 @@ newCardImg.addEventListener('click', function() {
 }
 
 /* Функция перебора массива с карточками */
-function arrayInitialCards(initialCards) {
+function renderInitialCards(initialCards) {
   initialCards.forEach((item) => {
     elementList.append(addCard(item.link, item.name));
   })
@@ -139,4 +139,4 @@ function handleAddCardSubmit(event) {
 addCardForm.addEventListener('submit', handleAddCardSubmit);
 
 /* Вызов функции добавления карточек из массива */
-arrayInitialCards(initialCards);
+renderInitialCards(initialCards);

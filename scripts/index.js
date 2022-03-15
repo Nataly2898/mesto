@@ -7,7 +7,6 @@ const popupProfileDescription = popupProfile.querySelector('.form__input_type_de
 const profileCloseButton = popupProfile.querySelector('.popup__close-button');
 const profileForm = popupProfile.querySelector('.form');
 
-
 const addCardButton = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_form_add-card');
 const popupAddCardName = popupAddCard.querySelector('.form__input_type_name');

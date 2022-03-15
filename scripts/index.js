@@ -1,12 +1,12 @@
-const popup = document.querySelector('.popup');
 const profileEdit = document.querySelector('.profile__edit-button');
-const popupProfile = document.querySelector('.popup_form_edit-profile');
 const profileTitle = document.querySelector('.profile__title');
 const profileDescription = document.querySelector('.profile__description');
-const profileForm = document.querySelector('.form');
-const formProfileName = popup.querySelector('.form__input_type_name');
-const formProfileDescription = popup.querySelector('.form__input_type_description');
-const profileCloseButton = popup.querySelector('.popup__close-button');
+const popupProfile = document.querySelector('.popup_form_edit-profile');
+const popupProfileName = popupProfile.querySelector('.form__input_type_name');
+const popupProfileDescription = popupProfile.querySelector('.form__input_type_description');
+const popupProfileCloseButton = popupProfile.querySelector('.popup__close-button');
+const profileForm = popupProfile.querySelector('.form');
+
 
 const addCardButton = document.querySelector('.profile__add-button');
 const popupAddCard = document.querySelector('.popup_form_add-card');
@@ -106,8 +106,8 @@ function closePopup(popup) {
 /* Открывтие поп апа по клику редактирования профиль и добавления карточки */
 
 profileEdit.addEventListener('click', function() {
-  formProfileName.value = profileTitle.textContent;
-  formProfileDescription.value = profileDescription.textContent;
+  popupProfileName.value = profileTitle.textContent;
+  popupProfileDescription.value = profileDescription.textContent;
 
   openPopup(popupProfile);
 })
@@ -117,7 +117,7 @@ addCardButton.addEventListener('click', function() {
 })
 
 /* Закрытие поп апа по крестику */
-profileCloseButton.addEventListener('click', () => closePopup(popupProfile)); 
+popupProfileCloseButton.addEventListener('click', () => closePopup(popupProfile)); 
 popupAddCardClose.addEventListener('click', () => closePopup(popupAddCard));
 popupViewClose.addEventListener('click', () => closePopup(popupView));
 
@@ -125,8 +125,8 @@ popupViewClose.addEventListener('click', () => closePopup(popupView));
 function handleProfileFormSubmit(event) {
   event.preventDefault();
 // Получение значение полей jobInput и nameInput из свойства value
-  profileTitle.textContent = formProfileName.value;
-  profileDescription.textContent = formProfileDescription.value;
+  profileTitle.textContent = popupProfileName.value;
+  profileDescription.textContent = popupProfileDescription.value;
   
   closePopup(popupProfile);
 }

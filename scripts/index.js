@@ -21,6 +21,8 @@ const popupViewDesc = popupView.querySelector('.popup__description');
 
 const elementList = document.querySelector('.elements__list');
 
+const modalWindow = document.querySelectorAll('.popup');
+
 /*массив карточек*/
 const initialCards = [
   {
@@ -87,14 +89,35 @@ function renderInitialCards(initialCards) {
   })
 }
 
+const handleEscPress = (evt) => {
+  if (evt.key === 'Escape') {
+    const popup = Array.from(modalWindow).find((popup) => popup.classList.contains('popup_opened'));
+    closePopup(popup);
+  }
+};
+
+modalWindow.forEach((popup) => {
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+    if (evt.target.classList.contains('popup__close-button')) {
+      closePopup(popup);
+    }
+  })
+});
+
 /* Открытие поп апа */
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener(`keydown`, handleEscPress);
 }
 
 /* Закрытие поп апа */
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  document.removeEventListener(`keydown`, handleEscPress);
+  popup.removeEventListener('click');
 }
 
 /* Открывтие поп апа по клику редактирования профиль и добавления карточки */
@@ -108,11 +131,6 @@ profileEdit.addEventListener('click', function() {
 addCardButton.addEventListener('click', function() {
   openPopup(popupAddCard);
 })
-
-/* Закрытие поп апа по крестику */
-profileCloseButton.addEventListener('click', () => closePopup(popupProfile)); 
-popupAddCardClose.addEventListener('click', () => closePopup(popupAddCard));
-popupViewClose.addEventListener('click', () => closePopup(popupView));
 
 // Обработчик «отправки» формы
 function handleProfileFormSubmit(event) {

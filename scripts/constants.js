@@ -26,6 +26,7 @@ const initialCards = [
     }
   ];
   
+  /*объект настройки валидации*/
   const config = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',

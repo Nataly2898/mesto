@@ -34,23 +34,14 @@ function addCard(cardImage, cardName) {
   newCard.querySelector('.element__title').textContent = cardName;
 
   /* Лайк карточки */
-  newCard.querySelector('.element__like').addEventListener('click', function(event) {
-    event.target.classList.toggle('element__like_active');
-  })
+ newCard.querySelector('.element__like').addEventListener('click', toggleLike);
 
   /* Удаление карточки */
-  newCard.querySelector('.element__button-trash').addEventListener('click', function(event) {
-    event.target.closest('.element').remove();
-  })
+  newCard.querySelector('.element__button-trash').addEventListener('click', deleteCard);
 
 /* Открытие карточки в popup окне*/
-newCardImg.addEventListener('click', function() {
-  popupViewImage.src = cardImage;
-  popupViewImage.alt = cardName;
-  popupViewDesc.textContent = cardName;
+  newCardImg.addEventListener("click", () => openCargImg(cardName, cardImage));
 
-  openPopup(popupView);
-})
   return newCard;
 }
 
@@ -61,11 +52,28 @@ function renderInitialCards(initialCards) {
   })
 }
 
+const toggleLike = (evt) => {
+  evt.target.classList.toggle('element__like_active');
+};
+
+const deleteCard = (evt) => {
+  evt.target.closest('.element').remove();
+};
+
+const openCargImg = (cardName, cardImage) =>  {
+  popupViewImage.src = cardImage;
+  popupViewImage.alt = cardName;
+  popupViewDesc.textContent = cardName;
+
+  openPopup(popupView);
+}
+
 const handleEscPress = (evt) => {
+  evt.preventDefault();
+  const popup = document.querySelector('.popup_opened');
   if (evt.key === 'Escape') {
-    const popup = Array.from(modalWindow).find((popup) => popup.classList.contains('popup_opened'));
     closePopup(popup);
-  }
+  };
 };
 
 modalWindow.forEach((popup) => {
@@ -89,11 +97,10 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
   document.removeEventListener(`keydown`, handleEscPress);
-  popup.removeEventListener('click');
 }
 
 /* Открывтие поп апа по клику редактирования профиль и добавления карточки */
-profileEdit.addEventListener('click', function() {
+  profileEdit.addEventListener('click', function() {
   popupProfileName.value = profileTitle.textContent;
   popupProfileDescription.value = profileDescription.textContent;
 

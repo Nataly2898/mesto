@@ -1,7 +1,6 @@
 import initialCards from './initialCards.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
-
 const formValidators = {};
 const profileEdit = document.querySelector('.profile__edit-button');
 const profileTitle = document.querySelector('.profile__title');
@@ -36,6 +35,7 @@ const config = {
 }
 
 /* Объявляем новую переменную Класса */
+
 const generateCard = (card) => new Card(card, '#card-template', openPopup);
 
 /* создаем новые карточки */
@@ -57,22 +57,22 @@ function openPopup(data) {
     popupViewImage.src = data.link;
     popupViewImage.alt = data.name;
     popupViewDesc.textContent = data.name;
-    popupView.addEventListener(`keydown`, handleEscPress);
   }
   else {
     data.classList.add('popup_opened');
-    data.addEventListener(`keydown`, handleEscPress);
+
   }
-}
+  window.onkeydown = handleEscPress;
+}; 
 
 /* Закрытие поп апа */
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  popup.removeEventListener(`keydown`, handleEscPress);
+  window.onkeydown = '';
 }
 
 const handleEscPress = (evt) => {
-  if (evt.key === 'Escape') {
+  if (evt.keyCode == 27) {
     const popup = document.querySelector('.popup_opened');
     closePopup(popup);
   };
@@ -89,7 +89,7 @@ modalWindows.forEach((popup) => {
   })
 })
 
-/* Открытие поп апа по клику редактирования профиль и добавления карточки */
+/* Открывтие поп апа по клику редактирования профиль и добавления карточки */
 profileEdit.addEventListener('click', function () {
   openPopup(popupProfile);
   popupProfileName.value = profileTitle.textContent;
@@ -103,7 +103,7 @@ addCardButton.addEventListener('click', function () {
 // Обработчик «отправки» формы
 function handleProfileFormSubmit(event) {
   event.preventDefault();
-
+  //formValidators[profileForm.getAttribute('name') ].resetForm();
   profileTitle.textContent = popupProfileName.value;
   profileDescription.textContent = popupProfileDescription.value;
   closePopup(popupProfile);
@@ -133,6 +133,5 @@ const enableValidation = (config) => {
 
 /* Вызов функции добавления карточек из массива */
 renderInitialCards(initialCards);
-
 /* Вызов Валидации */
 enableValidation(config);

@@ -5,6 +5,7 @@ export default class Card {
     this._openPopup = openPopup;
   }
 
+  // Получаем шаблон карточки
   _getElement() {
     this._element = document
       .querySelector(this._selector)
@@ -13,15 +14,18 @@ export default class Card {
       .cloneNode(true);
   }
 
+  // Лайк по карточке
   toggleLike() {
     this._element__like.classList.toggle('element__like_active');
   }
 
+  // Удаление карточки
   deleteCard() {
     this._element.remove();
     this._element = null;
   }
-
+ 
+  // Навешиваем слушателей
   _setEventListeners() {
     this._image.addEventListener('click', () => {
       this._openPopup({name: this._image.alt, link: this._data.link});
@@ -34,15 +38,19 @@ export default class Card {
     });
   }
 
+  // Генерируем карточку
   generate() {
     this._getElement();
     this._element__like = this._element.querySelector('.element__like');
     this._image = this._element.querySelector('.element__image');
     this._element__trash = this._element.querySelector('.element__button-trash');
+
     this._setEventListeners();
+    
     this._image.alt = this._data.name;
     this._image.src = this._data.link;
     this._element.querySelector('.element__title').textContent = this._data.name;
+
     return this._element;
   }
 }

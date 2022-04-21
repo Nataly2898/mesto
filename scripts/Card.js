@@ -1,8 +1,8 @@
 export default class Card {
-  constructor(data, selector, openPopup) {
+  constructor(data, selector,handleCardClick) {
     this._data = data;
     this._selector = selector;
-    this._openPopup = openPopup;
+    this._handleCardClick = handleCardClick;
   }
 
   // Получаем шаблон карточки
@@ -16,7 +16,7 @@ export default class Card {
 
   // Лайк по карточке
   toggleLike() {
-    this._element__like.classList.toggle('element__like_active');
+    this._elementLike.classList.toggle('element__like_active');
   }
 
   // Удаление карточки
@@ -24,16 +24,16 @@ export default class Card {
     this._element.remove();
     this._element = null;
   }
- 
+
   // Навешиваем слушателей
   _setEventListeners() {
     this._image.addEventListener('click', () => {
-      this._openPopup({name: this._image.alt, link: this._data.link});
+      this._handleCardClick(this._image.alt,this._data.link);
     });
-    this._element__trash.addEventListener('click', () => {
+    this._elementTrash.addEventListener('click', () => {
       this.deleteCard();
     });
-    this._element__like.addEventListener('click', (evt) => {
+    this._elementLike.addEventListener('click', (evt) => {
       this.toggleLike(evt);
     });
   }
@@ -41,12 +41,12 @@ export default class Card {
   // Генерируем карточку
   generate() {
     this._getElement();
-    this._element__like = this._element.querySelector('.element__like');
+    this._elementLike = this._element.querySelector('.element__like');
     this._image = this._element.querySelector('.element__image');
-    this._element__trash = this._element.querySelector('.element__button-trash');
+    this._elementTrash = this._element.querySelector('.element__button-trash');
 
     this._setEventListeners();
-    
+
     this._image.alt = this._data.name;
     this._image.src = this._data.link;
     this._element.querySelector('.element__title').textContent = this._data.name;

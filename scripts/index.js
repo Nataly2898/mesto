@@ -1,6 +1,7 @@
 import initialCards from './initialCards.js';
 import Card from './Card.js';
 import FormValidator from './FormValidator.js';
+
 const formValidators = {};
 const profileEdit = document.querySelector('.profile__edit-button');
 const profileTitle = document.querySelector('.profile__title');
@@ -35,8 +36,7 @@ const config = {
 }
 
 /* Объявляем новую переменную Класса */
-
-const generateCard = (card) => new Card(card, '#card-template', openPopup);
+const generateCard = (card) => new Card(card, '#card-template', handleCardClick);
 
 /* создаем новые карточки */
 const renderInitialCards = (cards) => (
@@ -51,19 +51,17 @@ const addCard = () => {
 }
 
 /* Открытие поп апа */
-function openPopup(data) {
-  if ((data.name) && (data.link)) {
-    popupView.classList.add('popup_opened');
-    popupViewImage.src = data.link;
-    popupViewImage.alt = data.name;
-    popupViewDesc.textContent = data.name;
-  }
-  else {
-    data.classList.add('popup_opened');
-
-  }
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
   document.addEventListener(`keydown`, handleEscPress);
-};  
+};
+
+function handleCardClick(name,link){
+  popupViewImage.src = link;
+  popupViewImage.alt = name;
+  popupViewDesc.textContent = name;
+  openPopup(popupView);
+}
 
 /* Закрытие поп апа */
 function closePopup(popup) {
@@ -72,7 +70,7 @@ function closePopup(popup) {
 }
 
 const handleEscPress = (evt) => {
-  if (evt.keyCode == 27) {
+  if (evt.key === "Escape") {
     const popup = document.querySelector('.popup_opened');
     closePopup(popup);
   };
@@ -133,5 +131,6 @@ const enableValidation = (config) => {
 
 /* Вызов функции добавления карточек из массива */
 renderInitialCards(initialCards);
+
 /* Вызов Валидации */
 enableValidation(config);

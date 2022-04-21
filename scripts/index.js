@@ -62,13 +62,13 @@ function openPopup(data) {
     data.classList.add('popup_opened');
 
   }
-  window.onkeydown = handleEscPress;
-}; 
+  document.addEventListener(`keydown`, handleEscPress);
+};  
 
 /* Закрытие поп апа */
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-  window.onkeydown = '';
+  document.removeEventListener(`keydown`, handleEscPress);
 }
 
 const handleEscPress = (evt) => {

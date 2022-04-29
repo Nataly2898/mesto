@@ -4,14 +4,14 @@ export default class Section {
     this._container = containerSelector;
   }
 
-  //* Рендер карточек
+  // Рендер карточек
   renderItems(items) {
     items.forEach((item) => {
       this._renderer(item);
     });
   }
 
-  //* Добавление карточки
+  // Добавление карточки
   addItem(element) {
     this._container.prepend(element);
   }

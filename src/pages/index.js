@@ -1,3 +1,5 @@
+import './index.css';
+
 import initialCards from '../utils/initialCards.js';
 
 import Card from '../components/Card.js';
@@ -27,7 +29,7 @@ const addCardForm = popupAddCard.querySelector('.form');
 
 const elementList = document.querySelector('.elements__list');
 
-/*объект настройки валидации*/
+// объект настройки валидации
 const config = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -37,10 +39,10 @@ const config = {
   errorClass: 'popup__error_visible'
 }
 
-/* Объявляем новую переменную Класса */
+// Объявляем новую переменную Класса 
 const generateCard = (card) => new Card(card, '#card-template', handleCardClick);
 
-/* создаем новые карточки */
+// создаем новые карточки 
 const renderInitialCards = (cards) => (
   cards.reverse().forEach((card) => elementList.append(generateCard(card).generate()))
 )
@@ -69,13 +71,13 @@ const section = new Section({
 elementList
 );
 
-/* oбработчик клика открытия попапа по кнопке 'Добавление карточки' */
+// oбработчик клика открытия попапа по кнопке 'Добавление карточки' 
 addCardButton.addEventListener('click', () => {
   popupFormAddCard.open();
   formValidators[addCardForm.getAttribute('name')].resetForm();
 });
 
-/* oбработчик клика открытия попапа по кнопке 'Редактирование профиля' */
+// oбработчик клика открытия попапа по кнопке 'Редактирование профиля'
 profileEdit.addEventListener('click', () => {
   popupFormProfile.open();
   formValidators[profileForm.getAttribute('name')].resetForm();
@@ -89,20 +91,20 @@ function handleCardClick(name, link){
   popupWithImage.open(name, link);
 }
 
-/* Объявляем класс userInfo */
+// Объявляем класс userInfo
 const userInfo = new UserInfo({
   userNameSelector: profileTitle,
   userJobSelector: profileDescription
 });
 
-/* Обработчик редактирования профиля */
+// Обработчик редактирования профиля
 function handleProfileFormSubmit(validatorName, data) {
   userInfo.setUserInfo(data);
   formValidators[validatorName].resetForm();
   popupFormProfile.close();
 }
 
-/* Функция добавления новой карточки из формы */
+// Функция добавления новой карточки из формы
 function handleAddCardSubmit() {
   addCard();
   formValidators[addCardForm.getAttribute('name')].resetForm();
@@ -119,8 +121,8 @@ const enableValidation = (config) => {
   });
 };
 
-/* Вызов функции добавления карточек из массива */
+// Вызов функции добавления карточек из массива
 renderInitialCards(initialCards);
 
-/* Вызов Валидации */
+// Вызов Валидации
 enableValidation(config);

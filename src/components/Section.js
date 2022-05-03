@@ -1,7 +1,8 @@
 export default class Section {
+  
   constructor({ renderItems }, containerSelector) {
     this._renderer = renderItems;
-    this._container = containerSelector;
+    this._container = document.querySelector(containerSelector);
   }
 
   // Рендер карточек

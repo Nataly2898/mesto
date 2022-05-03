@@ -1,5 +1,4 @@
 import Popup from './Popup.js';
-
 export default class PopupWithForm extends Popup {
 
   constructor(popupSelector,handleFormSubmit) {
@@ -10,23 +9,23 @@ export default class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    this._formValues = {};
+    const formValues = {};
     this._inputArray.forEach((input) => {
-      this._formValues[input.name] = input.value;
+      formValues[input.name] = input.value;
     });
-    return this._formValues;
+    return formValues;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._formElement.addEventListener('submit', (event) => {
       event.preventDefault();
-      this._handleFormSubmit(this._formElement.getAttribute('name'),this._getInputValues())
+      this._handleFormSubmit(this._getInputValues())
     });
   }
 
   close() {
-    this._formElement.reset();
     super.close();
+    this._formElement.reset();
   }
 }

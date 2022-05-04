@@ -71,10 +71,6 @@ profileEdit.addEventListener('click', () => {
 });
 
 function handleCardClick(name, link){
-  popupViewImage.src = link;
-  popupViewImage.alt = name;
-  popupViewDesc.textContent = name;
-  
   popupWithImage.open(name, link); 
 }
 
@@ -88,7 +84,6 @@ const userInfo = new UserInfo({
 function handleFormSubmit(data) {
   userInfo.setUserInfo(data);
   popupFormProfile.close();
-  formValidators[profileForm].resetForm();
 }
 
 // Функция добавления новой карточки из формы

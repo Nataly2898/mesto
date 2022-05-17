@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Наталья">
   <title>Место</title>
- 
+
 </head>
 
 <body class="root">
@@ -19,6 +19,7 @@
 
       <section class="profile">
         <img src="<%=require('./images/kusto.jpg')%>" alt="Аватар пользователя" class="profile__avatar">
+        <button class="profile__avatar-button"></button>
         <div class="profile__info">
           <div class="profile__text">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -28,7 +29,7 @@
         </div>
         <button class="profile__add-button" type="button" aria-label="Загрузить фото"></button>
       </section>
-      
+
       <section class="elements">
         <ul class="elements__list"></ul>
       </section>
@@ -39,46 +40,80 @@
       <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
     </footer>
 
-    <section class="popup popup_form_edit-profile">
+    <!-- Попап обновление Аватара -->
+    <section class="popup popup_form-edit_avatar">
       <div class="popup__container">
-          <h3 class="popup__title">Редактировать профиль</h3>
-          <form class="form popup__form" name="profilform" novalidate>
-            <label class="form__field">
-              <input id="inputTitle" name="inputTitle" class="popup__input popup__input_type_name" type="text" placeholder="Имя пользователя" minlength="2" maxlength="40" required value="">
-              <span class="popup__form-error inputTitle-error"></span>
-            </label>
-            <label class="form__field">
-              <input id="inputSubtitle" name="inputSubtitle" class="popup__input popup__input_type_description" type="text" placeholder="О себе" minlength="2" maxlength="200" required value="">
-              <span class="popup__form-error inputSubtitle-error"></span>
-            </label>
-            <button class="form__submit popup__button" type="submit">Сохранить</button>
+        <h3 class="popup__title">Обновить аватар</h3>
+        <form class="form popup__form" name="avatarform" novalidate>
+          <label class="form__field">
+            <input id="avatar" name="avatar" class="popup__input popup__input_type_link" type="url"
+              placeholder="Ссылка на картинку" required value="">
+            <span class="popup__form-error inputSubtitleAdd-error"></span>
+          </label>
+          <button class="form__submit popup__button" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
     </section>
 
-    <section class="popup popup_form_add-card">
+    <!-- Попап редактирования Профиля -->
+    <section class="popup popup_form_edit-profile">
       <div class="popup__container">
-          <h3 class="popup__title">Новое место</h3>
-          <form class="form popup__form" name="cardform" novalidate>
-            <label class="form__field">
-              <input id="inputTitleAdd" name="inputTitleAdd" class="popup__input popup__input_type_title" type="text" placeholder="Название" minlength="2" maxlength="30" required value="">
-              <span class="popup__form-error inputTitleAdd-error"></span>
-            </label>
-            <label class="form__field">
-              <input id="inputSubtitleAdd" name="inputSubtitleAdd" class="popup__input popup__input_type_link" type="url" placeholder="Ссылка на картинку" required value="">
-              <span class="popup__form-error inputSubtitleAdd-error"></span>
-            </label>
-            <button class="form__submit popup__button" type="submit">Создать</button>
+        <h3 class="popup__title">Редактировать профиль</h3>
+        <form class="form popup__form" name="profilform" method="GET" action="#" novalidate>
+          <label class="form__field">
+            <input id="inputTitle" name="inputTitle" class="popup__input popup__input_type_name" type="text"
+              placeholder="Имя пользователя" minlength="2" maxlength="40" required value="">
+            <span class="popup__form-error inputTitle-error"></span>
+          </label>
+          <label class="form__field">
+            <input id="inputSubtitle" name="inputSubtitle" class="popup__input popup__input_type_description"
+              type="text" placeholder="О себе" minlength="2" maxlength="200" required value="">
+            <span class="popup__form-error inputSubtitle-error"></span>
+          </label>
+          <button class="form__submit popup__button" type="submit">Сохранить</button>
         </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
     </section>
-    
+
+    <!-- Попап добавление Карточки -->
+    <section class="popup popup_form_add-card">
+      <div class="popup__container">
+        <h3 class="popup__title">Новое место</h3>
+        <form class="form popup__form" name="cardform" method="GET" action="#" novalidate>
+          <label class="form__field">
+            <input id="inputTitleAdd" name="inputTitleAdd" class="popup__input popup__input_type_title" type="text"
+              placeholder="Название" minlength="2" maxlength="30" required value="">
+            <span class="popup__form-error inputTitleAdd-error"></span>
+          </label>
+          <label class="form__field">
+            <input id="inputSubtitleAdd" name="inputSubtitleAdd" class="popup__input popup__input_type_link" type="url"
+              placeholder="Ссылка на картинку" required value="">
+            <span class="popup__form-error inputSubtitleAdd-error"></span>
+          </label>
+          <button class="form__submit popup__button" type="submit">Создать</button>
+        </form>
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      </div>
+    </section>
+
+    <!-- Попап увеличение изображения Карточки -->
     <section class="popup popup_view-image">
       <div class="popup__content">
         <img src="#" alt="Загруженное изображение" class="popup__image">
         <h3 class="popup__description"></h3>
+        <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
+      </div>
+    </section>
+
+    <!-- Попап для подтверждений удаления карточки -->
+    <section class="popup popup_add-card_delete">
+      <div class="popup__container">
+        <h2 class="popup__title">Вы уверены?</h2>
+        <form class="form  popup__form" name="delete-card" method="GET" action="#" novalidate>
+          <button class="form__submit popup__button" type="submit">Да</button>
+        </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
     </section>
@@ -88,7 +123,10 @@
         <img src="#" alt="Загруженное изображение" class="element__image">
         <div class="element__container">
           <h2 class="element__title"></h2>
-          <button class="element__like" type="button"></button>
+          <div class="element__like-contain">
+            <button class="element__like" type="button"></button>
+            <span class="element__likes-number"></span>
+          </div>
         </div>
         <button class="element__button-trash" type="button" aria-label="Удаление карточки"></button>
       </li>

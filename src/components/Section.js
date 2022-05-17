@@ -6,9 +6,9 @@ export default class Section {
   }
 
   // Рендер карточек
-  renderItems(items) {
-    items.forEach((item) => {
-      this._renderer(item);
+  renderItems(data,userId) {
+    data.forEach((item) => {
+      this._renderer(item,userId);
     });
   }
 

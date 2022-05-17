@@ -6,9 +6,9 @@
    border: none;
    line-height: 0;
    cursor: pointer;
+   transition: opacity .2s;
 }
   
 .element__like:hover {
   opacity: .5;
-  cursor: pointer;
 }

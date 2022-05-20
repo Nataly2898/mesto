@@ -48,7 +48,7 @@
           <label class="form__field">
             <input id="avatar" name="avatar" class="popup__input popup__input_type_link" type="url"
               placeholder="Ссылка на картинку" required value="">
-            <span class="popup__form-error inputSubtitleAdd-error"></span>
+            <span class="popup__form-error avatar-error"></span>
           </label>
           <button class="form__submit popup__button" type="submit">Сохранить</button>
         </form>
@@ -107,12 +107,12 @@
       </div>
     </section>
 
-    <!-- Попап для подтверждений удаления карточки -->
+    <!-- Попап подтверждение удаления карточки -->
     <section class="popup popup_add-card_delete">
       <div class="popup__container">
-        <h2 class="popup__title">Вы уверены?</h2>
+        <h2 class="popup__title popup__title_delcard">Вы уверены?</h2>
         <form class="form  popup__form" name="delete-card" method="GET" action="#" novalidate>
-          <button class="form__submit popup__button" type="submit">Да</button>
+          <button class="form__submit popup__button popup__button_delcard" type="submit">Да</button>
         </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>

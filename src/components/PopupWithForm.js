@@ -32,12 +32,12 @@ export default class PopupWithForm extends Popup {
     this._formElement.reset();
   }
 
-  // Кнопка в момент нажатия
- loading(isLoading) {
-  if (isLoading) {
+  // Кнопка в момент нажатия/загрузки
+  loading(isLoading) {
+   if (isLoading) {
     this._submitButton.textContent = 'Сохранение...'
-  } else {
+   } else {
     this._submitButton.textContent = this._submitButtonTxt;
+    }
   }
-}
 }

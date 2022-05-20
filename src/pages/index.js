@@ -10,9 +10,10 @@ import {
   profileTitle,
   profileDescription,
   avatar,
+  avatarForm,
   editButtonAvatar,
   popupEditAvatar,
-  formEditAvatar,
+  popupAvatarSelector,
   profileForm,
   popupView,
   popupViewImage,
@@ -37,7 +38,7 @@ import Api from "../components/Api.js";
 
 /* ----------- Api ----------- */
 
-/* Инициализация класса Api - Добавили*/
+// Инициализация класса Api
 const api = new Api({
   url: "https://mesto.nomoreparties.co/v1/cohort-41",
   headers: {
@@ -46,15 +47,10 @@ const api = new Api({
   },
 });
 
-// Загрузка готовых карточек и данных о пользователе
-
-
 /* ----------- Карточки с изображениями ----------- */
 
-// Объявляем новую переменную Класса - 
-//Надо функции ниже возможно объединить как 
-//в закомментированном примере или можно так оставить?
-const createCard = (data,userId) => { 
+// Объявляем новую переменную Класса
+const createCard = (data, userId) => { 
   const card = new Card(
   data, 
   '#card-template', 
@@ -62,13 +58,13 @@ const createCard = (data,userId) => {
   userId, 
   handleCardDelete,
   handleSetLike,
-  handleRemoveLike)
+  handleLikeDelete)
 
  const cardElement = card.generate();
  return cardElement;
 };
 
-const handleCardDelete = (cardId,card) => {
+const handleCardDelete = (cardId, card) => {
   popupDeleteCard.setFormSubmitHandler(() => {
     api.deleteCard(cardId)
       .then(() => {
@@ -82,103 +78,43 @@ const handleCardDelete = (cardId,card) => {
   popupDeleteCard.open();
 }
 
-const handleSetLike = (cardId,card) => {
+const handleSetLike = (cardId, card) => {
   api.setLike(cardId)
     .then((data) => {
-      card.handleLikeCard(data);
+      card.handleLikeClick(data);
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
     });
 };
 
-const handleRemoveLike = (cardId,card) => {
+const handleLikeDelete = (cardId, card) => {
   api.deleteLike(cardId)
     .then((data) => {
-      card.handleLikeCard(data);
+      card.handleLikeClick(data);
     })
     .catch((err) => {
       console.log(`Ошибка: ${err}`);
     });
 };
-
-//Создание экземпляра класса Section
-const section = new Section({
-  renderItems: (card,userId) => {
-    section.addItem(createCard(card,userId));
-  },
-}, elementList);
-
-/*// функционал создания новой карточки - пробую сделать, но не получается
-//карточки пропадают, выше написан код, его можем объединить, как на этом примере
-const createCard = (data) => {
-  const card = new Card({
-    data: data,
-    cardSelector: '#card-template',
-    userId: userId,
-    handleCardClick: (name, link) => {
-      popupWithImage.open(name, link);
-    },
-    handleCardDelete: (cardId) => {
-      popupDeleteCard.open();
-      popupDeleteCard.setFormSubmitHandler(() => {
-        api.deleteCard(cardId)
-          .then(() => {
-            popupDeleteCard .close();
-            card.deleteCard();
-          })
-          .catch((err) => {
-            console.log(`Ошибка: ${err}`);
-          });
-      });
-    },
-    handleSetLike: (cardId) => {
-      api.setLike(cardId)
-        .then((data) => {
-          card.handleLikeCard(data);
-        })
-        .catch((err) => {
-          console.log(`Ошибка: ${err}`);
-        });
-    },
-    handleRemoveLike: (cardId) => {
-      api.deleteLike(cardId)
-        .then((data) => {
-          card.handleLikeCard(data);
-        })
-        .catch((err) => {
-          console.log(`Ошибка: ${err}`);
-        });
-    }
-  });
-
-  const cardElement = card.generate();
-  return cardElement;
-};*/
 
 function handleCardClick(name, link){
   popupWithImage.open(name, link); 
 }
 
-/*// Функция добавления новой карточки из формы
-function handleAddCardSubmit() {
-  section.addItem(createCard({
-    name: popupAddCardName.value,
-    link: popupAddCardLink.value,
-  }));
-  popupFormAddCard.close();
-}*/
+//Создание экземпляра класса Section
+const section = new Section({
+  renderItems: (card,userId) => {
+    section.addItem(createCard(card, userId));
+  },
+}, elementList);
 
-// Попап редактирования формы "Новое место" Доработать 
-
-//Не получается объединить, как в закомментированном примере ниже
-
-
+// Попап редактирования формы "Новое место" 
 const handleAddCardSubmit = (formData) => {
   popupFormAddCard.loading(true);
   api.addCard(formData)
     .then((formData) => {
-      section.addItem(createCard(formData,formData.owner._id));
+      section.addItem(createCard(formData, formData.owner._id));
       popupFormAddCard.close();
     })
     .catch((err) => {
@@ -188,133 +124,83 @@ const handleAddCardSubmit = (formData) => {
       popupFormAddCard.loading(false);
     });
 };
+
 const popupFormAddCard = new PopupWithForm(popupAddCardSelector, handleAddCardSubmit);
 popupFormAddCard.setEventListeners();
-
-/* Это пример, который не получается сделать, карточки пропадают
-const popupFormAddCard = new PopupWithForm({
-  popupAddCardSelector: '.popup_form_add-card',
-  handleFormSubmit: (formData) => {
-    popupFormAddCard.loading(true);
-    api.addCard(formData)
-      .then((formData) => {
-        section.addItem(createCard(formData));
-        popupFormAddCard.close();
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      })
-      .finally(() => {
-        popupFormAddCard.loading(false);
-      });
-  }
-});
-
-popupFormAddCard.setEventListeners();
-*/
-
-//oбработчик клика открытия попапа по кнопке 'Добавление карточки'
-addCardButton.addEventListener('click', () => {
-  //валидация не работает
-  formValidators[addCardForm].resetForm();
-  popupFormAddCard.open();
-});
 
 // Попап просмотра изображения 
 const popupWithImage = new PopupWithImage(popupViewSelector);
 popupWithImage.setEventListeners();
 
-/* -------------- Удаление карточки --------------- */
-
-// Попап "Удаление карточки" - Добавили, делаем по аналогии с карточкой
-// На данный момент, форма открывается при нажатии на лайк-сердечко
-//где-то перепутали))) Все переменнные хранятся в файле utils/constans.js
+// Попап "Удаление карточки" 
 const popupDeleteCard = new PopupWithSubmit(popupAdddCardDelSelector);
 popupDeleteCard.setEventListeners();
 
-//oбработчик клика открытия попапа по кнопке 'Удаление карточки' - Написать правильное значение
+//oбработчик клика открытия попапа по кнопке 'Добавление карточки'
 addCardButton.addEventListener('click', () => {
+  formValidators[addCardForm].resetForm();
   popupFormAddCard.open();
 });
 
-
 /* -------------- Редактирование профиля --------------- */
 
-const popupFormProfile = new PopupWithForm(popupProfileSelector,handleFormSubmit);
-popupFormProfile.setEventListeners();
-
-/*// создание попапа с формой редактирования профиля в процессе работы
-const popupFormProfile = new PopupWithForm({
-  popupSelector: '.popup_type_edit',
-  handleFormSubmit: (dataForm) => {
-    popupFormProfile.loading(true);
-    api.editUserInfo(dataForm)
-      .then((dataForm) => {
-        userInfo.setUserInfo(dataForm);
-        popupFormProfile.close();
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      })
-      .finally(() => {
-        popupFormProfile.loading(false);
-      });
-  }
-});
-
-popupFormProfile.setEventListeners();*/
-
-// создание экземпляра класса, отвечающего за отображение информации о пользователе
+// Cоздание экземпляра класса, отвечающего за отображение информации о пользователе 
 const userInfo = new UserInfo({
   userNameSelector: profileTitle,
   userJobSelector: profileDescription,
   userAvatarSelector: avatar
 });
 
-// Обработчик редактирования профиля
- function handleFormSubmit(data) {
-  userInfo.setUserInfo(data);
-  popupFormProfile.close();
-}
+const handleFormSubmit = (formData) => {
+  popupFormProfile.loading(true);
+  api.editUserInfo(formData)
+    .then((formData) => {
+      userInfo.setUserInfo(formData);
+      popupFormProfile.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      popupFormProfile.loading(false);
+    });
+  };
 
-//oбработчик клика открытия попапа по кнопке 'Редактирование профиля'
+const popupFormProfile = new PopupWithForm(popupProfileSelector, handleFormSubmit);
+popupFormProfile.setEventListeners();
+
+//Обработчик открытия попапа по кнопке 'Редактирование профиля'
 profileEdit.addEventListener('click', () => {
- // formValidators[profileForm].resetForm();
+  formValidators[profileForm].resetForm();
   popupFormProfile.open();
 });
 
+/* ----------- Редактирование Аватара  ----------- */
 
-/* ----------- Аватар ----------- */
+const handleAvatarChange = (formData) => {
+  editAvatarPopup.loading(true);
+  api.editAvatar(formData)
+    .then((formData) => {
+      userInfo.setUserInfo(formData);
+      editAvatarPopup.close();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    })
+    .finally(() => {
+      editAvatarPopup.loading(false);
+    });
+  };
 
-//const editAvatarPopup = new PopupWithForm(popupEditAvatar, handleFormSubmit);
-//popupFormProfile.setEventListeners();
+const editAvatarPopup = new PopupWithForm(popupAvatarSelector, handleAvatarChange);
+editAvatarPopup.setEventListeners();
 
-// Создание попапа редактирования аватара пользователя
-// const editAvatarPopup = new PopupWithForm({
-//   popupSelector: '.popup_add-card_delete',
-//   handleFormSubmit: (data) => {
-//     editAvatarPopup.loading(true);
-//     api.editAvatar(data)
-//       .then((data) => {
-//         avatar.src = data.avatar;
-//         editAvatarPopup.close();
-//       })
-//       .catch((err) => {
-//         console.log(`Ошибка: ${err}`);
-//       })
-//       .finally(() => {
-//         editAvatarPopup.loading(false);
-//       });
-//   }
-// });
+// Обработчик открытие формы по кнопке аватара пользователя
+editButtonAvatar.addEventListener('click', () => {
+  formValidators[avatarForm].resetForm();
+  editAvatarPopup.open();
+});
 
-// editAvatarPopup.setEventListeners();
-
-// // Обработчик открытие формы по кнопке аватара пользователя*/
-// editButtonAvatar.addEventListener('click', () => {
-//   //formValidators[profileForm].resetForm();
-//   editAvatarPopup.open();
-// });
 /* ----------- Валидация форм ----------- */
 
 const enableValidation = (config) => {
@@ -327,16 +213,15 @@ const enableValidation = (config) => {
   });
 };
 
-// Рисуем карточки
-//section.renderItems(initialCards); 
-
-// Вызов Валидации
+// Загрузка карточек и данных о пользователе с сервера
 Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([initialCards, userData]) => {
     userInfo.setUserInfo(userData);
-    section.renderItems(initialCards,userData._id);
+    section.renderItems(initialCards, userData._id);
   })
   .catch((err) => {
     console.log(`Ошибка: ${err}`);
   });
+
+// Вызов Валидации
 enableValidation(config);

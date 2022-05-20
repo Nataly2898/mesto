@@ -12,7 +12,6 @@ export default class UserInfo {
       job: this._job.textContent,
       avatar: this._avatar.src
     };
-
     return userInfo;
   }
 

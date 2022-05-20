@@ -35,11 +35,8 @@ export default class Api {
       if (res.ok) {
         return res.json();
       } else {
-
         this._handleError(res)
       }
-
-
     });
   }
 
@@ -62,11 +59,8 @@ export default class Api {
         if (res.ok) {
           return res.json();
         } else {
-
           this._handleError(res)
         }
-
-
       });
   }
 
@@ -80,11 +74,8 @@ export default class Api {
       if (res.ok) {
         return res.json();
       } else {
-
         this._handleError(res)
       }
-
-
     });
   }
 
@@ -98,7 +89,6 @@ export default class Api {
         if (res.ok) {
           return res.json();
         } else {
-
           this._handleError(res)
         }
       })
@@ -106,12 +96,13 @@ export default class Api {
 
   // Редактирование информации о пользователе через попап
   editUserInfo(data) {
+    console.log(data);
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
-        name: data.username,
-        about: data.job
+        name: data.inputTitle,
+        about: data.inputSubtitle
       })
     })
       .then(res => this._handleError(res));

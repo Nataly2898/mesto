@@ -4,18 +4,16 @@ export const popupViewSelector = '.popup_view-image';
 export const  popupProfileSelector = '.popup_form_edit-profile';
 export const popupAddCardSelector = '.popup_form_add-card';
 export const  popupAdddCardDelSelector = '.popup_add-card_delete';
+export const popupAvatarSelector = '.popup_form-edit_avatar';
 
 export const profileEdit = document.querySelector('.profile__edit-button');
 export const profileTitle = '.profile__title';
 export const profileDescription = '.profile__description';
-// аватар пользователя
+
+export const avatarForm = 'avatarform';
 export const avatar = '.profile__avatar';
-// кнопка редактирования аватара пользователя
 export const editButtonAvatar = document.querySelector('.profile__avatar-button');
-// попап редактирования аватара пользователя
 export const popupEditAvatar = document.querySelector('.popup_form-edit_avatar');
-// Форма редактирования аватара пользователя
-export const formEditAvatar = popupEditAvatar.querySelector('.popup__form');
 
 export const profileForm = "profilform";
 export const popupView = document.querySelector('.popup_view-image');

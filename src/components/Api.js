@@ -31,13 +31,7 @@ export default class Api {
         link: data.inputSubtitleAdd
       })
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        this._handleError(res)
-      }
-    });
+    .then(res => this._handleError(res));
   }
 
   // Удаление карточки
@@ -55,13 +49,7 @@ export default class Api {
       method: 'PUT',
       headers: this._headers
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          this._handleError(res)
-        }
-      });
+    .then(res => this._handleError(res));
   }
 
   // Удаление лайка
@@ -70,13 +58,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })
-    .then(res => {
-      if (res.ok) {
-        return res.json();
-      } else {
-        this._handleError(res)
-      }
-    });
+    .then(res => this._handleError(res));
   }
 
   // Получение информации о пользователе с сервера

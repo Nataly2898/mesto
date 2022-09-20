@@ -1,0 +1,126 @@
+.card {
+  width: 270px;
+  position: relative;
+  margin: auto;
+}
+
+.card__image {
+  width: 270px;
+  height: 151px;
+  border-radius: 0;
+}
+
+.card__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 29px;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: 6px;
+}
+
+.card__name {
+  margin: 0;
+  padding: 0;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.card__button {
+  position: absolute;
+  right: 0;
+  padding: 0;
+  border: none;
+  border-radius: 36px;
+  transition: opacity 0.2s linear;
+}
+
+.card__button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.card__button_inactive {
+  margin: 2px 5px;
+  width: 10px;
+  height: 8.5px;
+  background: #f9f9f9 url(../../../images/icon-save.svg) center no-repeat;
+}
+
+.card__button_active {
+  margin: 2px 5px;
+  width: 10px;
+  height: 8.5px;
+  background: #f9f9f9 url(../../../images/icon-save-active.svg) center no-repeat;
+}
+
+.card__button_delete {
+  margin: 2px 5px;
+  width: 9px;
+  height: 9px;
+  cursor: pointer;
+  background: #f9f9f9 url(../../../images/icon-delete.svg) center no-repeat;
+}
+
+.card__duration {
+  margin: 0;
+  padding: 0;
+  display: block;
+  background-color: #fff;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 13px;
+  color: #a0a0a0;
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    width: 339px;
+  }
+
+  .card__image {
+    width: 339px;
+    height: 190px;
+  }
+
+  .card__description {
+    padding: 12px 0 29px;
+    margin-bottom: 7px;
+    border-bottom: 1px solid #e8e8e8;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  .card__button_saved {
+    width: 10px;
+    height: 8.5px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card {
+    width: 300px;
+  }
+
+  .card__image {
+    width: 300px;
+    height: 168px;
+  }
+
+  .card__description {
+    padding: 14px 0 0;
+  }
+
+  .card__name {
+    font-size: 12px;
+    line-height: 15px;
+    margin-bottom: 27px;
+  }
+}

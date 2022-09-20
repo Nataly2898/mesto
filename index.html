@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+<button class="auth">Авторизация</button>
+<button class="me">О себе</button>
+<button class="edit">Изменить данные</button>
+<button class="add-movie">Добавить фильм</button>
+<button class="get-movies">Получить список фильмов</button>
+<button class="delete-movies">Удалить фильм</button>
+
+<script>
+  var token = '';
+
+  function err(data){
+    console.log(data.responseJSON, data.status);
+  }
+
+  $('.auth').on('click', () => {
+    $.ajax({
+      method: 'post',
+      dataType : "json",
+      contentType: "application/json; charset=utf-8",
+      data: JSON.stringify({"email": "dima-sun_joomla1@mail.ru", "password": "lapa271170"}),
+      url: 'http://127.0.0.1:3000/signin',
+      success: (data) => {
+        console.log('signin user', data.token)
+        token = data.token;
+      },
+      error: err
+    })
+  })
+
+  $('.me').on('click', () => {
+    $.ajax({
+      url: 'http://127.0.0.1:3000/me',
+      headers: {'Authorization': `Bearer ${token}`},
+      success: (data) => {
+        console.log('get user', data)
+      },
+      error: err
+    })
+  })
+
+  $('.edit').on('click', () => {
+    $.ajax({
+      method: 'patch',
+      url: 'http://127.0.0.1:3000/me',
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      headers: {'Authorization': `Bearer ${token}`},
+      data: JSON.stringify({
+        "email": "dima-sunjoomla@mail.ru",
+        "name": "dimaaaa"
+      }),
+      success: (data) => {
+        console.log('edit user', data)
+      },
+      error: err
+    })
+  })
+
+  $('.add-movie').on('click', () => {
+    $.ajax({
+      method: 'post',
+      url: 'http://127.0.0.1:3000/movies',
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      headers: {'Authorization': `Bearer ${token}`},
+      data: JSON.stringify({
+        "country": "Индия",
+        "director": "С.С. Раджамули",
+        "duration": 187,
+        "year": "2022",
+        "description": "Британская Индия. Рама — преданный полицейский на службе у колониального правительства, способный расправиться с толпой в одиночку, и местные считают его предателем. Бхим — парень из племени гондов, который вынужден отправиться в Дели на поиски похищенной губернатором маленькой соплеменницы. Узнав об этом, губернатор объявляет награду за его поимку, и, чтобы продвинуться по службе, Рама берётся за это задание. Спасая упавшего в реку мальчика, Рама и Бхим становятся друзьями. Они не знают ни настоящих личностей, ни скрытых мотивов друг друга, но это знакомство положит начало большим переменам.",
+        "image": "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/1a184eb2-a345-43ff-a7a0-f3b7884f3922/300x450",
+        "trailerLink": "https://www.youtube.com/watch?v=3mIXbhGo7nk",
+        "thumbnail": "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/1a184eb2-a345-43ff-a7a0-f3b7884f3922/300x450",
+        "movieId": 123445677,
+        "nameRU": "RRR: Рядом ревёт революция",
+        "nameEN": "RRR"
+      }),
+      success: (data) => {
+        console.log("add movie", data)
+      },
+      error: err
+    })
+  })
+
+  $('.get-movies').on('click', () => {
+    $.ajax({
+      method: 'get',
+      url: 'http://127.0.0.1:3000/movies',
+      headers: {'Authorization': `Bearer ${token}`},
+      success: (data) => {
+        console.log("get movies", data)
+      },
+      error: err
+    })
+  })
+
+
+  $('.delete-movies').on('click', () => {
+    $.ajax({
+      method: 'delete',
+      url: 'http://127.0.0.1:3000/632219c6e7e616bf391117f0',
+      headers: {'Authorization': `Bearer ${token}`},
+      success: (data) => {
+        console.log("delete movie", data)
+      },
+      error: err
+    })
+  })
+
+</script>
+</body>
+</html>

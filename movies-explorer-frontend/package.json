@@ -16,8 +16,20 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nataly2898/movies-explorer-frontend.git"
+  },
+  "author": "Наталия",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nataly2898/movies-explorer-frontend/issues"
+  },
+  "homepage": "https://github.com/Nataly2898/movies-explorer-frontend#readme",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -35,5 +47,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
